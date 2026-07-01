@@ -1,19 +1,120 @@
 body{
+
     background:#f4f6f9;
+
+    font-family:Arial, Helvetica, sans-serif;
+
 }
 
 .card{
-    border-radius:15px;
+
+    border:none;
+
+    border-radius:16px;
+
 }
 
 .card-header{
-    font-size:24px;
+
+    padding:18px;
+
+}
+
+.card-header h2{
+
+    font-weight:700;
+
 }
 
 label{
-    font-weight:bold;
+
+    font-weight:600;
+
 }
 
-button{
+.form-control{
+
+    border-radius:10px;
+
+    padding:10px;
+
+}
+
+.btn-success{
+
+    border-radius:10px;
+
     font-size:18px;
+
+    font-weight:600;
+
+}
+
+.table{
+
+    margin-top:10px;
+
+}
+
+.table th{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+}
+
+.table td{
+
+    vertical-align:top;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#eef6ff;
+
+}
+
+.remarks-box{
+
+    background:#f8f9fa;
+
+    border:1px solid #dee2e6;
+
+    border-radius:8px;
+
+    padding:12px;
+
+    white-space:pre-wrap;
+
+    word-break:break-word;
+
+    max-height:170px;
+
+    overflow-y:auto;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+.btn-warning,
+.btn-danger{
+
+    width:90px;
+
+}
+
+.table-responsive{
+
+    border-radius:10px;
+
+}
+
+hr{
+
+    border-top:2px solid #dcdcdc;
+
 }

@@ -1,53 +1,52 @@
 import os
-import google.generativeai as genai
 from dotenv import load_dotenv
+from google import genai
 
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
-model = genai.GenerativeModel("gemini-2.5-flash")
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 
 def get_health_prediction(glucose, haemoglobin, cholesterol):
 
     prompt = f"""
-You are a healthcare prediction assistant.
+You are an AI healthcare assistant.
 
-Patient values:
+Analyze the following patient's blood test values.
 
-Glucose = {glucose}
-Haemoglobin = {haemoglobin}
-Cholesterol = {cholesterol}
+Blood Test Results
 
-Predict ONLY ONE possible health condition or disease risk.
+Glucose: {glucose} mg/dL
+Haemoglobin: {haemoglobin} g/dL
+Cholesterol: {cholesterol} mg/dL
 
-Examples:
+Using your medical knowledge, determine the most likely health condition or disease risk.
 
-Healthy
+Do NOT use predefined responses.
+Analyze the values carefully.
 
-Diabetes Risk
-
-High Cholesterol Risk
-
-Possible Anemia
-
-Prediabetes Risk
-
-Return ONLY:
+Return ONLY in the following format.
 
 Possible Condition:
 <condition>
 
-Do not explain.
-Do not give recommendation.
-Do not use bullet points.
+Reason:
+<short explanation>
+
+Keep the answer under 60 words.
 """
 
     try:
-        response = model.generate_content(prompt)
+
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
+
         return response.text.strip()
 
     except Exception as e:
+
         print("Gemini Error:", e)
-        return "Prediction Not Available"
+
+        return "Prediction could not be generated."
